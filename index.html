@@ -1,0 +1,253 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aim Dental | Practice Intelligence Demo</title>
+<style>
+:root{--ink:#153345;--blue:#176d93;--mint:#dff4f1;--bg:#f3f7fa;--line:#dbe6ed;--muted:#68808d}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:var(--bg);color:var(--ink)}
+.shell{display:grid;grid-template-columns:235px 1fr;min-height:100vh}
+aside{background:#102d40;color:#e5f5fa;padding:24px 17px}
+.logo{font-size:23px;font-weight:800;margin-bottom:5px}
+.sub{font-size:12px;color:#91bdcb}
+.nav{margin-top:32px}
+.nav button{display:block;width:100%;text-align:left;border:0;background:none;color:#c1dbe3;padding:13px;border-radius:10px;cursor:pointer;margin-bottom:5px}
+.nav button.active,.nav button:hover{background:#20506a;color:white}
+main{padding:27px;min-width:0}
+header{display:flex;justify-content:space-between;gap:16px;align-items:center;flex-wrap:wrap}
+h1{margin:0;font-size:29px}
+p{line-height:1.5}
+.muted{color:var(--muted)}
+.pill{display:inline-block;border-radius:99px;padding:7px 11px;background:#e1f2f8;color:#12638a;font-size:12px;font-weight:700}
+.controls{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+select,button{font:inherit}
+select{border:1px solid var(--line);background:white;padding:11px;border-radius:10px}
+.action{background:var(--blue);border:0;color:white;padding:12px 16px;border-radius:10px;cursor:pointer}
+.banner{margin:23px 0;padding:21px 23px;background:linear-gradient(110deg,#153b54,#177e93);color:white;border-radius:19px}
+.banner p{color:#d5edf1;margin-bottom:0}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px}
+.stat,.panel{background:white;border:1px solid var(--line);border-radius:17px;padding:19px;box-shadow:0 4px 15px #173c5009}
+.stat strong{display:block;font-size:30px;margin:10px 0 4px}
+.stat small{color:var(--muted)}
+.grid{display:grid;grid-template-columns:1.4fr 1fr;gap:17px;margin-top:17px}
+.panel h2{font-size:18px;margin:0 0 15px}
+.services{display:flex;gap:8px;flex-wrap:wrap}
+.service{padding:9px 12px;background:#edf7f9;border-radius:10px;font-size:13px}
+.bar{height:9px;background:#e9f0f3;border-radius:10px;overflow:hidden;margin:9px 0 18px}
+.bar i{display:block;background:#2b9cb2;height:100%}
+.row{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid #edf1f4}
+.row:last-child{border:0}
+.clinic{border:1px solid var(--line);padding:14px;border-radius:12px;margin:9px 0}
+.clinic strong{display:block;margin-bottom:6px}
+.clinic small{display:block;color:var(--muted);line-height:1.6}
+.tag{color:#177f78;background:#e2f7f0;border-radius:20px;padding:5px 8px;font-size:11px}
+.agent{padding:13px;background:#f3f8fb;border-radius:12px;margin-bottom:9px}
+.agent b{display:block}
+.agent span{font-size:12px;color:var(--muted)}
+.notice{padding:12px;background:#fff6e6;border-radius:10px;font-size:13px;color:#845700;margin-top:15px}
+.section{display:none}
+.section.active{display:block}
+.chart{display:flex;gap:9px;align-items:end;height:175px;border-bottom:1px solid var(--line);padding-top:15px}
+.chart div{flex:1;background:linear-gradient(#49b6bd,#1c7799);border-radius:7px 7px 0 0;position:relative}
+.chart div span{position:absolute;bottom:-22px;left:0;right:0;text-align:center;font-size:11px;color:var(--muted)}
+a{color:#1679a0}
+@media(max-width:1000px){
+.shell{grid-template-columns:1fr}
+aside{position:static}
+.nav{display:flex;flex-wrap:wrap;margin-top:15px}
+.nav button{width:auto}
+.stats{grid-template-columns:repeat(2,1fr)}
+.grid{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+main{padding:15px}
+.stats{grid-template-columns:1fr}
+h1{font-size:24px}
+}
+</style>
+</head>
+<body>
+<div class="shell">
+<aside>
+<div class="logo">AIM DENTAL</div>
+<div class="sub">Practice Intelligence · Concept Demo</div>
+<div class="nav">
+<button class="active" data-section="overview">◫ Executive Overview</button>
+<button data-section="clinics">⌖ Clinics & Hours</button>
+<button data-section="clinical">✚ Services & Clinicians</button>
+<button data-section="operations">◷ Operations & AI</button>
+</div>
+<p style="font-size:12px;color:#91bdcb;margin-top:35px">
+Public website facts + illustrative dashboard metrics. No live practice integration.
+</p>
+</aside>
+<main>
+<header>
+<div>
+<h1 id="pageTitle">Executive Overview</h1>
+<p class="muted" style="margin:6px 0">Aim Dental Group · Multi-site dental operations</p>
+</div>
+<div class="controls">
+<select id="location">
+<option>All four clinics</option>
+<option>Woodvale</option>
+<option>Innaloo</option>
+<option>Maddington</option>
+<option>Merredin</option>
+</select>
+<button class="action" id="brief">Generate AI Brief</button>
+</div>
+</header>
+<div class="banner">
+<span class="pill">DEMONSTRATION · SAMPLE METRICS</span>
+<h2 style="margin-bottom:6px">Connected care. Smarter practice operations.</h2>
+<p>See how a unified dashboard could support Aim Dental’s patient-centred approach across four Western Australian clinics.</p>
+</div>
+
+<section class="section active" id="overview">
+<div class="stats">
+<div class="stat">Appointments today<strong id="appointments">94</strong><small>Illustrative count</small></div>
+<div class="stat">Chair utilisation<strong id="utilisation">83%</strong><small>Illustrative capacity</small></div>
+<div class="stat">Patient recall due<strong id="recall">126</strong><small>Illustrative opportunity</small></div>
+<div class="stat">Revenue this month<strong id="revenue">$284k</strong><small>Illustrative AUD</small></div>
+</div>
+<div class="grid">
+<div class="panel">
+<h2>Appointment activity · example week</h2>
+<div class="chart">
+<div style="height:65%"><span>Mon</span></div>
+<div style="height:84%"><span>Tue</span></div>
+<div style="height:74%"><span>Wed</span></div>
+<div style="height:92%"><span>Thu</span></div>
+<div style="height:79%"><span>Fri</span></div>
+<div style="height:35%"><span>Sat</span></div>
+</div>
+<p class="muted" style="font-size:12px;margin-top:33px">Illustrative weekly distribution, not actual bookings.</p>
+</div>
+<div class="panel">
+<h2>AI opportunities</h2>
+<div class="row"><span>After-hours enquiry capture</span><span class="tag">High impact</span></div>
+<div class="row"><span>Preventive recall outreach</span><span class="tag">High impact</span></div>
+<div class="row"><span>Appointment gap management</span><span class="tag">High impact</span></div>
+<div class="row"><span>Multi-site reporting</span><span class="tag">Leadership</span></div>
+</div>
+</div>
+<div class="grid">
+<div class="panel">
+<h2>Sample treatment mix</h2>
+<div>General & preventive <b style="float:right">46%</b></div>
+<div class="bar"><i style="width:46%"></i></div>
+<div>Restorative <b style="float:right">27%</b></div>
+<div class="bar"><i style="width:27%"></i></div>
+<div>Cosmetic & orthodontic <b style="float:right">18%</b></div>
+<div class="bar"><i style="width:18%"></i></div>
+<div>Emergency <b style="float:right">9%</b></div>
+<div class="bar"><i style="width:9%"></i></div>
+<p class="muted" style="font-size:12px">These percentages are demonstration assumptions.</p>
+</div>
+<div class="panel">
+<h2>Practice profile</h2>
+<div class="row"><span>Founded</span><b>2004</b></div>
+<div class="row"><span>Managing Director</span><b>Dr David Beecham</b></div>
+<div class="row"><span>Clinic locations</span><b>4</b></div>
+<div class="row"><span>Care focus</span><b>Family & comprehensive</b></div>
+<p class="muted" style="font-size:12px">Profile sourced from Aim Dental’s About Us and home pages.</p>
+</div>
+</div>
+</section>
+
+<section class="section" id="clinics">
+<div class="grid">
+<div class="panel">
+<h2>Clinic directory</h2>
+<div id="clinicList"></div>
+</div>
+<div class="panel">
+<h2>Multi-site intelligence</h2>
+<p>Compare appointment demand, recall gaps, chair capacity and after-hours enquiries by clinic when integrated with practice software.</p>
+<div class="notice">Opening hours shown are based on the main Contact Us page. Individual location pages contain some differences; confirm hours with each clinic before operational use.</div>
+<p><a href="https://www.aimdental.com.au/contact-us/" target="_blank" rel="noopener">Official locations and contact page ↗</a></p>
+</div>
+</div>
+</section>
+
+<section class="section" id="clinical">
+<div class="grid">
+<div class="panel">
+<h2>Published dental services</h2>
+<div class="services" id="services"></div>
+<p class="muted" style="font-size:12px">Services vary by clinic and practitioner; confirm availability before booking.</p>
+</div>
+<div class="panel">
+<h2>Clinicians listed on the website</h2>
+<div id="clinicians"></div>
+<p><a href="https://www.aimdental.com.au/our-team/" target="_blank" rel="noopener">View official clinician profiles ↗</a></p>
+</div>
+</div>
+</section>
+
+<section class="section" id="operations">
+<div class="stats">
+<div class="stat">Missed calls<strong>18</strong><small>Demo, past 7 days</small></div>
+<div class="stat">Recall conversion<strong>31%</strong><small>Demo</small></div>
+<div class="stat">Treatment acceptance<strong>67%</strong><small>Demo</small></div>
+<div class="stat">Unfilled chair time<strong>22h</strong><small>Demo, weekly</small></div>
+</div>
+<div class="grid">
+<div class="panel">
+<h2>Proposed AI workflow agents</h2>
+<div class="agent"><b>☎ AI Receptionist</b><span>Answer enquiries, collect callback details, suggest appointment types; booking only with approved integration.</span></div>
+<div class="agent"><b>📅 Recall & Scheduling</b><span>Identify recall opportunities and draft consent-aware follow-up messages.</span></div>
+<div class="agent"><b>📊 Practice Intelligence</b><span>Summarise chair utilisation, revenue trends and treatment conversion.</span></div>
+<div class="agent"><b>📝 Clinical Documentation Assistant</b><span>Draft structured notes for clinician verification, not autonomous clinical decisions.</span></div>
+<div class="agent"><b>🛡 Governance & Compliance</b><span>Flag outstanding policy reviews, access issues and audit evidence.</span></div>
+</div>
+<div class="panel">
+<h2>Human oversight</h2>
+<div class="row"><span>Clinical decisions</span><b>Clinician only</b></div>
+<div class="row"><span>Emergency triage</span><b>Approved escalation</b></div>
+<div class="row"><span>Patient communications</span><b>Consent controls</b></div>
+<div class="row"><span>Practice data</span><b>Permission-based</b></div>
+<div class="notice">This is a product concept. AI agents, workflow connections and performance figures are not represented as deployed at Aim Dental.</div>
+</div>
+</div>
+</section>
+<p class="muted" style="font-size:12px;margin-top:26px">Source: aimdental.com.au — Home, About Us, Contact Us, Our Team, Innaloo clinic and New Patients. Public information checked October 2026. Demo figures are fictional.</p>
+</main>
+</div>
+<script>
+const clinics=[
+['Woodvale','13/923 Whitfords Avenue, Woodvale WA 6026','08 9448 8677','Mon & Wed 8am–5pm; Tue 8am–7:30pm; Fri 8am–4pm'],
+['Innaloo','3/1 Sunray Drive, Innaloo WA 6018','08 6365 6777','Mon, Wed, Thu 8am–5pm; Tue 8am–7:30pm; Fri 8am–5pm; Sat 8am–1pm'],
+['Maddington','5/74 Attfield Street, Maddington WA 6109','08 9493 4637','Mon & Wed 8am–7:30pm; Tue & Thu 8am–5pm; Fri 7:30am–4:30pm; Sat 8am–1pm'],
+['Merredin','42 Barrack Street, Merredin WA 6415','08 9041 1735','Mon–Thu 8:30am–5pm; Fri 8am–1pm']
+];
+const services=['General dentistry','Preventive check-ups','Emergency dentistry','Cosmetic dentistry','Teeth whitening','Dental implants','Orthodontics','Invisalign','Dental crowns & bridges','Veneers','Fillings','Root canal treatment','Wisdom teeth extractions','Periodontal care','Children’s dentistry','Oral health therapy','Sedation dentistry','Sleep apnoea treatment'];
+const names=['Dr David Beecham','Dr Katie Cullinan','Dr Evelyn Gan','Dr Hayden Brooke','Dr Jarryd Chapman','Dr Priscilla Lam','Dr Michael Kiel','Dr Helen Marriott','Dr Jack Hawkesford','Dr Kezryn Pereira','Dr Kia Hoveydai','Dr Shan Li','Dr Mostafa Hussain','Jessica Truong','Anisa Dirickx','Britt Lynch','Kay Bates','Jacqueline Lopes-Denton','Aja Dawson','Theo Liu','Hannah Cresswell','Camilla Griffin-Appadoo','Cathy Chen'];
+document.getElementById('clinicList').innerHTML=clinics.map(c=>`<div class="clinic"><strong>${c[0]}</strong><small>${c[1]}<br>Phone: ${c[2]}<br>Published hours: ${c[3]}</small></div>`).join('');
+document.getElementById('services').innerHTML=services.map(s=>`<span class="service">${s}</span>`).join('');
+document.getElementById('clinicians').innerHTML=names.map(n=>`<div class="row">${n}</div>`).join('');
+document.querySelectorAll('[data-section]').forEach(b=>b.addEventListener('click',()=>{
+document.querySelectorAll('[data-section]').forEach(x=>x.classList.remove('active'));
+b.classList.add('active');
+document.querySelectorAll('.section').forEach(x=>x.classList.remove('active'));
+document.getElementById(b.dataset.section).classList.add('active');
+document.getElementById('pageTitle').textContent=b.textContent.trim()
+}));
+const data={
+'All four clinics':[94,'83%',126,'$284k'],
+Woodvale:[28,'86%',35,'$82k'],
+Innaloo:[30,'88%',39,'$94k'],
+Maddington:[24,'80%',32,'$70k'],
+Merredin:[12,'76%',20,'$38k']
+};
+document.getElementById('location').addEventListener('change',e=>{
+let a=data[e.target.value];
+['appointments','utilisation','recall','revenue'].forEach((k,i)=>document.getElementById(k).textContent=a[i])
+});
+document.getElementById('brief').addEventListener('click',()=>alert('AI Executive Brief — Demonstration only\n\nPriorities: improve recall follow-up, review chair capacity, capture after-hours enquiries, and compare clinic performance.\n\nNo live patient or financial data is connected.'));
+</script>
+</body>
+</html>
